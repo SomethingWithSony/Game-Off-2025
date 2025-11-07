@@ -25,8 +25,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	camera_follow()
-
-
+	
 # Camera & Movement
 func movement_logic(delta, mouse_pos):
 	if direction == Vector2.ZERO:
@@ -47,7 +46,7 @@ func movement_logic(delta, mouse_pos):
 	
 	if !ray.is_empty():
 
-		var look_target : Vector3 = Vector3(ray["position"].x, position.y, ray["position"].z)
+		var look_target : Vector3 = Vector3(ray.position.x, position.y, ray.position.z)
 		var player_target_vector : Vector3 = (look_target - position).normalized()
 		var angle_rad : float = atan2(-player_target_vector.x, -player_target_vector.z)
 		rotation.y = lerp_angle(rotation.y, angle_rad, 10 * delta)
@@ -57,7 +56,6 @@ func camera_follow():
 	#camera_controller.rotation.y = lerp_angle(camera_controller.global_rotation.y , rotation.y, 0.01) 
 	
 # Utils
-
 func cast_ray(mouse_pos : Vector2, ray_length : int) -> Dictionary:
 	var space_state = get_world_3d().direct_space_state
 	var origin = camera.project_ray_origin(mouse_pos)
@@ -68,4 +66,3 @@ func cast_ray(mouse_pos : Vector2, ray_length : int) -> Dictionary:
 	
 	return result
 		
-	

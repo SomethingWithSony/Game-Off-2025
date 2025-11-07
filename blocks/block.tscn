@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpy5kixt4ksui"]
+
+[ext_resource type="Texture2D" uid="uid://f3s5ny4ohf4j" path="res://Prototype Textures/PNG/Green/texture_01.png" id="1_wp24v"]
+[ext_resource type="Script" uid="uid://brx5talb4wc6m" path="res://blocks/block.gd" id="1_xoxf0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xoxf0"]
+albedo_texture = ExtResource("1_wp24v")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_nrr8p"]
+material = SubResource("StandardMaterial3D_xoxf0")
+size = Vector3(1, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gxuhn"]
+size = Vector3(1, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xoxf0"]
+size = Vector3(0.87158203, 0.86151123, 1.8859863)
+
+[node name="Block" type="StaticBody3D"]
+collision_layer = 16
+collision_mask = 7
+script = ExtResource("1_xoxf0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38724637, 0)
+mesh = SubResource("BoxMesh_nrr8p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38724637, 0)
+shape = SubResource("BoxShape3D_gxuhn")
+debug_color = Color(0.7846643, 0, 0.26199803, 1)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 24
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009521484, -0.118133545, -0.0008544922)
+shape = SubResource("BoxShape3D_xoxf0")
+debug_color = Color(0.65925056, 0.31987977, 3.85046e-07, 1)
